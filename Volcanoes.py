@@ -3,16 +3,21 @@ import folium
 import numpy as np
 
 html = """
+<head>
 <h4 style="margin-bottom:0px; padding-top:10px;">Volcano information:</h4>
+<p>
 Name: %s <br>
 Type: %s <br>
-Elevation: %s meters <br>
+Elevation: %s meters<br>
+</p>
+</head>
 
 <style>
 * {
     font-family:Helvetica;
     font-size:16;
 }
+
 </style>"""
 
 data = pandas.read_csv("Volcanoes2.csv")
@@ -24,6 +29,8 @@ volc = list(data["Type"])
 elev = list(data["Elevation"])
 
 def colorelev(elev):
+    if elev <0:
+        return "darkblue"
     if elev <=1000:
         return "green"
     elif elev <=2000:
